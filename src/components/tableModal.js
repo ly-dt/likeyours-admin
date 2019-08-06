@@ -1,9 +1,9 @@
 import React from 'react';
 import { Modal } from 'antd';
 
-const TableModal = ({ visible, toggleModal, children }) => (
+const TableModal = ({ visible, toggleModal, label, children }) => (
   <Modal
-    title="Add Station"
+    title={label}
     visible={visible}
     closable={true}
     onCancel={toggleModal}

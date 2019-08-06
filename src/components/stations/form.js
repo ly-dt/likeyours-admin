@@ -1,25 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 
 import { createStation } from '../../repository/stations/';
 
 const CreateStationForm = props => {
+  const { form, closeModalCallback, fetchDataCallback, formDataToSet, isFormEditing } = props;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
     setIsSubmitting(true);
-    props.form.validateFields(async (err, values) => {
+    form.validateFields(async (err, values) => {
       if (!err) {
         await createStation(values);
         setIsSubmitting(false);
-        props.closeModalCallback();
-        props.fetchDataCallback();
+        closeModalCallback();
+        fetchDataCallback();
       }
     });
   };
 
-  const { getFieldDecorator } = props.form;
-  console.log(props);
+  const { getFieldDecorator } = form;
+  useEffect(() => {
+    if (formDataToSet) {
+      const { name, address, details } = formDataToSet;
+      form.setFields({
+        name: {
+          value: name,
+        },
+        address: {
+          value: address,
+        },
+        details: {
+          value: details,
+        },
+      });
+    }
+  }, [formDataToSet, form]);
+
   return (
     <Form onSubmit={handleSubmit} className="login-form">
       <Form.Item>
@@ -46,7 +63,7 @@ const CreateStationForm = props => {
           size="large"
           loading={isSubmitting}
         >
-          Create Station
+          {isFormEditing ? 'Edit Station' : 'Create Station'}
         </Button>
       </Form.Item>
     </Form>
