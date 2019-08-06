@@ -34,20 +34,7 @@ const Users = () => {
       dataIndex: 'details',
     },
   ];
-
-  // "first_name": "Franz",
-  //     "last_name": "Palngipang",
-  //     "birthday": "1998-08-23T00:00:00.000Z",
-  //     "address": "Fort Victoria Condominium",
-  //     "mobile": "+639562663868",
-  //     "email": "franz@appallnight.dev",
-
-  return (
-    <>
-      <ActionButton label="Add User" callback={() => console.log('called!')} />
-      <Table columns={columns} dataSource={data} />
-    </>
-  );
+  return <Table columns={columns} dataSource={data} />;
 };
 
 export default Users;

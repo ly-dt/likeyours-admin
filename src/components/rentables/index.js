@@ -26,12 +26,32 @@ const Rentables = () => {
       dataIndex: 'name',
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
+      title: 'Category',
+      dataIndex: 'categories',
+    },
+    {
+      title: 'Station',
+      dataIndex: 'station',
     },
     {
       title: 'Details',
       dataIndex: 'details',
+    },
+    {
+      title: 'Price',
+      dataIndex: 'price',
+    },
+    {
+      title: 'Price Currency',
+      dataIndex: 'price_currency',
+    },
+    {
+      title: 'Price Unit',
+      dataIndex: 'price_unit',
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
     },
   ];
 
