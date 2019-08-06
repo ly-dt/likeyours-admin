@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import Stations from './components/stations';
 import Users from './components/users';
+import Categories from './components/categories';
 import Rentables from './components/rentables';
 
 const { Header, Content, Sider } = Layout;
@@ -18,8 +19,11 @@ const App = () => {
       case '/users':
         setSelectedMenuKey('2');
         break;
-      case '/rentables':
+      case '/categories':
         setSelectedMenuKey('3');
+        break;
+      case '/rentables':
+        setSelectedMenuKey('4');
         break;
       default:
         setSelectedMenuKey('1');
@@ -41,13 +45,19 @@ const App = () => {
             >
               <Menu.Item key="1" onClick={handleClick}>
                 Stations
-                <Link to={'/'}>Stations</Link>
+                <Link to={'/'} />
               </Menu.Item>
               <Menu.Item key="2" onClick={handleClick}>
-                Users<Link to={'/users'}>Users</Link>
+                Users
+                <Link to={'/users'} />
               </Menu.Item>
               <Menu.Item key="3" onClick={handleClick}>
-                Rentables<Link to={'/rentables'}>Rentables</Link>
+                Categories
+                <Link to={'/categories'} />
+              </Menu.Item>
+              <Menu.Item key="4" onClick={handleClick}>
+                Rentables
+                <Link to={'/rentables'} />
               </Menu.Item>
             </Menu>
           </Sider>
@@ -62,6 +72,7 @@ const App = () => {
             >
               <Route exact path="/" component={Stations} />
               <Route exact path="/users" component={Users} />
+              <Route exact path="/categories" component={Categories} />
               <Route exact path="/rentables" component={Rentables} />
             </Content>
           </Layout>

@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal } from 'antd';
 
-import StationForm from './form';
-import Spacer from '../spacer';
+import CategoryForm from './form';
 import ActionButton from '../actionButton';
+import Spacer from '../spacer';
 import TableModal from '../tableModal';
 
 import useModal from '../../hooks/useModalHook';
 
-import { StationsRepo } from '../../repository';
+import { CategoriesRepo } from '../../repository';
 
 const { confirm } = Modal;
 
-const Stations = () => {
+const Categories = () => {
   const { isModalVisible, toggleModal } = useModal();
 
   const [data, setData] = useState([]);
@@ -39,7 +39,7 @@ const Stations = () => {
 
   const fetchData = async () => {
     try {
-      const response = await StationsRepo.getStations();
+      const response = await CategoriesRepo.getCategories();
       setData(response);
     } catch (err) {
       console.log(err);
@@ -59,7 +59,7 @@ const Stations = () => {
   };
 
   const deleteData = async value => {
-    await StationsRepo.deleteStation(value._id);
+    await CategoriesRepo.deleteCategories(value._id);
   };
 
   useEffect(() => {
@@ -68,16 +68,8 @@ const Stations = () => {
 
   const columns = [
     {
-      title: 'Station Name',
+      title: 'Name',
       dataIndex: 'name',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-    },
-    {
-      title: 'Details',
-      dataIndex: 'details',
     },
     {
       title: 'Actions',
@@ -90,17 +82,16 @@ const Stations = () => {
       ),
     },
   ];
-
   return (
     <>
-      <ActionButton label={'Add Station'} callback={addData} />
+      <ActionButton label={'Add Category'} callback={addData} />
       <Table columns={columns} dataSource={data} />
       <TableModal
         visible={isModalVisible}
         toggleModal={toggleModal}
-        label={isEditing ? 'Edit Station' : 'Add Station'}
+        label={isEditing ? 'Edit Category' : 'Add Category'}
       >
-        <StationForm
+        <CategoryForm
           closeModalCallback={toggleModal}
           fetchDataCallback={fetchData}
           isFormEditing={isEditing}
@@ -111,4 +102,4 @@ const Stations = () => {
   );
 };
 
-export default Stations;
+export default Categories;

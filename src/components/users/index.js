@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 
-import ActionButton from '../actionButton';
-
 import { UsersRepo } from '../../repository';
 
 const Users = () => {

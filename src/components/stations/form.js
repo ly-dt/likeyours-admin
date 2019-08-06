@@ -3,7 +3,7 @@ import { Form, Input, Button } from 'antd';
 
 import { createStation, updateStation } from '../../repository/stations/';
 
-const CreateStationForm = props => {
+const StationForm = props => {
   const { form, closeModalCallback, fetchDataCallback, formDataToSet, isFormEditing } = props;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const handleSubmit = e => {
@@ -40,7 +40,7 @@ const CreateStationForm = props => {
   }, []);
 
   return (
-    <Form onSubmit={handleSubmit} className="login-form">
+    <Form onSubmit={handleSubmit}>
       <Form.Item>
         {getFieldDecorator('name', {
           rules: [{ required: true, message: 'Please enter the name' }],
@@ -57,14 +57,7 @@ const CreateStationForm = props => {
         })(<Input placeholder="Details" size="large" />)}
       </Form.Item>
       <Form.Item>
-        <Button
-          type="primary"
-          htmlType="submit"
-          className="login-form-button"
-          block
-          size="large"
-          loading={isSubmitting}
-        >
+        <Button type="primary" htmlType="submit" block size="large" loading={isSubmitting}>
           {isFormEditing ? 'Edit Station' : 'Create Station'}
         </Button>
       </Form.Item>
@@ -72,6 +65,6 @@ const CreateStationForm = props => {
   );
 };
 
-const WrappedNormalLoginForm = Form.create({ name: 'create_station' })(CreateStationForm);
+const WrappedStationForm = Form.create({ name: 'station_form' })(StationForm);
 
-export default WrappedNormalLoginForm;
+export default WrappedStationForm;
