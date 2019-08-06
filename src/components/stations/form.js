@@ -35,7 +35,7 @@ const CreateStationForm = props => {
         },
       });
     }
-  }, [formDataToSet, form]);
+  }, []);
 
   return (
     <Form onSubmit={handleSubmit} className="login-form">
