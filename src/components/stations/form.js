@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 
-import { createStation } from '../../repository/stations/';
+import { createStation, updateStation } from '../../repository/stations/';
 
 const CreateStationForm = props => {
   const { form, closeModalCallback, fetchDataCallback, formDataToSet, isFormEditing } = props;
@@ -11,7 +11,9 @@ const CreateStationForm = props => {
     setIsSubmitting(true);
     form.validateFields(async (err, values) => {
       if (!err) {
-        await createStation(values);
+        isFormEditing
+          ? await updateStation({ id: formDataToSet._id, ...values })
+          : await createStation(values);
         setIsSubmitting(false);
         closeModalCallback();
         fetchDataCallback();
