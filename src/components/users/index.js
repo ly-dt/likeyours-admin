@@ -21,7 +21,11 @@ const Users = () => {
   const columns = [
     {
       title: 'First Name',
-      dataIndex: 'name',
+      dataIndex: 'first_name',
+    },
+    {
+      title: 'Last Name',
+      dataIndex: 'last_name',
     },
     {
       title: 'Address',
